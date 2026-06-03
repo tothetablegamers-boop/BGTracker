@@ -496,7 +496,7 @@
     closeModal('add-modal');
     renderTab();
     showToast(editingId ? 'Game updated!' : 'Game added!');
-    syncToServer(gameData, editingId ? 'update' : 'add');
+    syncToServer(gameData, editingId ? 'updateGame' : 'addGame');
   }
 
   // ── Delete ──
