@@ -499,12 +499,15 @@
   // ── Sync to Server ──
   function syncToServer(data, action) {
   if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') return;
+  
   fetch(APPS_SCRIPT_URL, {
     method: 'POST',
-    mode: 'no-cors',
     headers: { 'Content-Type': 'text/plain' },
-    body: JSON.stringify({ action, game: data }),
-  }).catch(() => showToast('Sync failed — saved locally'));
+    body: JSON.stringify({ ...data, action: action })
+  })
+  .then(res => res.json())
+  .then(result => console.log('Server sync result:', result))
+  .catch(err => console.error('Server sync error:', err));
 }
 
   // ── Route Tab ──
