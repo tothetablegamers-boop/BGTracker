@@ -249,7 +249,21 @@
     fetch(APPS_SCRIPT_URL + '?action=getGames')
       .then(r => r.json())
       .then(data => {
-        games = data.games || [];
+        games = (data.games || []).map(g => ({
+          id: g.game_id,
+          originalTitle: g.original_title,
+          convention: g.convention,
+          hall: g.hall,
+          booth: g.booth_number,
+          publisher: g.publisher,
+          price: g.original_price,
+          currency: g.original_currency,
+          url: g.convention_url,
+          imageUrl: g.image_url,
+          status: g.status,
+          notes: g.notes,
+          updatedAt: g.last_updated,
+        }));
         localStorage.setItem('bg_games', JSON.stringify(games));
         renderTab();
       })
@@ -497,13 +511,29 @@
   }
 
   // ── Sync to Server ──
-  function syncToServer(data, action) {
+ function syncToServer(data, action) {
   if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') return;
-  
+
+  const payload = {
+    action: action,
+    game_id: data.id,
+    original_title: data.originalTitle,
+    convention: data.convention,
+    hall: data.hall,
+    booth_number: data.booth,
+    publisher: data.publisher,
+    original_price: data.price,
+    original_currency: data.currency,
+    convention_url: data.url,
+    image_url: data.imageUrl,
+    status: data.status,
+    notes: data.notes,
+  };
+
   fetch(APPS_SCRIPT_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'text/plain' },
-    body: JSON.stringify({ ...data, action: action })
+    body: JSON.stringify(payload)
   })
   .then(res => res.json())
   .then(result => console.log('Server sync result:', result))
