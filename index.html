@@ -191,7 +191,7 @@
 <div class="toast" id="toast"></div>
 
 <script>
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwSJDbr11oXe_liNAaVax8eepfwGLFcsLMUNANSTs3sQ8JQg0qpCg4mOEA39_fzSXxNnA/exec';
+  let APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwSJDbr11oXe_liNAaVax8eepfwGLFcsLMUNANSTs3sQ8JQg0qpCg4mOEA39_fzSXxNnA/exec';
 
   let games = [];
   let currentFilter = 'all';
@@ -498,12 +498,14 @@
 
   // ── Sync to Server ──
   function syncToServer(data, action) {
-    if (APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') return;
-    fetch(APPS_SCRIPT_URL, {
-      method: 'POST',
-      body: JSON.stringify({ action, game: data }),
-    }).catch(() => showToast('Sync failed — saved locally'));
-  }
+  if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') return;
+  fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify({ action, game: data }),
+  }).catch(() => showToast('Sync failed — saved locally'));
+}
 
   // ── Route Tab ──
   function renderRouteTab() {
@@ -583,11 +585,16 @@
     document.getElementById('main-content').innerHTML = html;
   }
 
-  function saveSettings() {
-    const url = document.getElementById('s-url').value.trim();
-    if (url) localStorage.setItem('bg_script_url', url);
-    showToast('Settings saved — reload to apply');
+ function saveSettings() {
+  const url = document.getElementById('s-url').value.trim();
+  if (url) {
+    localStorage.setItem('bg_script_url', url);
+    APPS_SCRIPT_URL = url;
+    showToast('Settings saved!');
+  } else {
+    showToast('Please enter a valid URL');
   }
+}
 
   function exportData() {
     const blob = new Blob([JSON.stringify(games, null, 2)], { type: 'application/json' });
