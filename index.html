@@ -623,11 +623,10 @@
   }
 
   // ── Load saved settings ──
-  const savedUrl = localStorage.getItem('bg_script_url');
-  if (savedUrl) {
-    // reassign via a mutable variable approach
-    window._scriptUrl = savedUrl;
-  }
+ const savedUrl = localStorage.getItem('bg_script_url');
+if (savedUrl) {
+  APPS_SCRIPT_URL = savedUrl;
+}
 </script>
 </body>
 </html>
