@@ -512,9 +512,7 @@
 
   // ── Sync to Server ──
  function syncToServer(data, action) {
-  if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') {
-    return;
-  }
+  console.log("Sending:", action, data);
 
   const payload = {
     action: action,
@@ -539,12 +537,12 @@
     },
     body: JSON.stringify(payload)
   })
-  .then(res => res.json())
-  .then(result => {
-    console.log("Apps Script:", result);
+  .then(async res => {
+    const text = await res.text();
+    alert("Response: " + text);
   })
   .catch(err => {
-    console.error("Apps Script Error:", err);
+    alert("Error: " + err);
   });
 }
 
