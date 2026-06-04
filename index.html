@@ -531,14 +531,11 @@
   };
 
   fetch(APPS_SCRIPT_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'text/plain' },
-    body: JSON.stringify(payload)
+  method: 'POST',
+  body: new URLSearchParams({
+    data: JSON.stringify(payload)
   })
-  .then(res => res.json())
-  .then(result => console.log('Server sync result:', result))
-  .catch(err => console.error('Server sync error:', err));
-}
+})
 
   // ── Route Tab ──
   function renderRouteTab() {
@@ -546,7 +543,7 @@
     games.filter(g => g.status !== 'not-available' && g.status !== 'collected')
       .forEach(g => {
         const key = g.convention || 'Unknown';
-        if (!byConvention[key]) byConvention[key] = [];
+       if (!byConvention[key]) byConvention[key] = [];
         byConvention[key].push(g);
       });
 
