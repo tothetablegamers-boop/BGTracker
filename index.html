@@ -512,10 +512,10 @@
 
   // ── Sync to Server ──
  function syncToServer(data, action) {
-  console.log("Sending:", action, data);
+  console.log("Syncing:", action, data);
 
   const payload = {
-    action: action,
+    action,
     game_id: data.id,
     original_title: data.originalTitle,
     convention: data.convention,
@@ -539,10 +539,25 @@
   })
   .then(async res => {
     const text = await res.text();
-    alert("Response: " + text);
+
+    let parsed;
+    try {
+      parsed = JSON.parse(text);
+    } catch (e) {
+      parsed = text;
+    }
+
+    console.log("Sync response:", parsed);
+
+    if (res.ok) {
+      showToast("Synced to server ✔️");
+    } else {
+      showToast("Sync failed ⚠️");
+    }
   })
   .catch(err => {
-    alert("Error: " + err);
+    console.error("Sync error:", err);
+    showToast("Offline sync failed");
   });
 }
 
