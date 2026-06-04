@@ -512,10 +512,10 @@
 
   // ── Sync to Server ──
  function syncToServer(data, action) {
-  console.log("Syncing:", action, data);
+  if (!APPS_SCRIPT_URL) return;
 
   const payload = {
-    action,
+    action: action,
     game_id: data.id,
     original_title: data.originalTitle,
     convention: data.convention,
@@ -537,27 +537,19 @@
     },
     body: JSON.stringify(payload)
   })
-  .then(async res => {
-    const text = await res.text();
+  .then(response => response.json())
+  .then(result => {
+    console.log("Apps Script Response:", result);
 
-    let parsed;
-    try {
-      parsed = JSON.parse(text);
-    } catch (e) {
-      parsed = text;
-    }
-
-    console.log("Sync response:", parsed);
-
-    if (res.ok) {
-      showToast("Synced to server ✔️");
+    if (result.success) {
+      showToast("Synced to Google Sheets");
     } else {
-      showToast("Sync failed ⚠️");
+      showToast("Sync failed");
     }
   })
-  .catch(err => {
-    console.error("Sync error:", err);
-    showToast("Offline sync failed");
+  .catch(error => {
+    console.error(error);
+    showToast("Network error");
   });
 }
 
