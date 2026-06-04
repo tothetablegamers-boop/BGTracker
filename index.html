@@ -512,7 +512,9 @@
 
   // ── Sync to Server ──
  function syncToServer(data, action) {
-  if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') return;
+  if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') {
+    return;
+  }
 
   const payload = {
     action: action,
@@ -527,15 +529,24 @@
     convention_url: data.url,
     image_url: data.imageUrl,
     status: data.status,
-    notes: data.notes,
+    notes: data.notes
   };
 
   fetch(APPS_SCRIPT_URL, {
-  method: 'POST',
-  body: new URLSearchParams({
-    data: JSON.stringify(payload)
+    method: "POST",
+    headers: {
+      "Content-Type": "text/plain"
+    },
+    body: JSON.stringify(payload)
   })
-})
+  .then(res => res.json())
+  .then(result => {
+    console.log("Apps Script:", result);
+  })
+  .catch(err => {
+    console.error("Apps Script Error:", err);
+  });
+}
 
   // ── Route Tab ──
   function renderRouteTab() {
