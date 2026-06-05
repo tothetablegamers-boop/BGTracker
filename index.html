@@ -651,6 +651,20 @@
       g.status !== "not-available"
   );
 
+  const paidCount =
+  routeGames.filter(g => g.status === "paid").length;
+
+const reservedCount =
+  routeGames.filter(g => g.status === "reserved").length;
+
+const interestedCount =
+  routeGames.filter(g => g.status === "interested").length;
+
+const hallCount =
+  new Set(
+    routeGames.map(g => g.hall).filter(Boolean)
+  ).size;
+    
   if (routeGames.length === 0) {
     document.getElementById("main-content").innerHTML =
       `<div class="empty-state">
