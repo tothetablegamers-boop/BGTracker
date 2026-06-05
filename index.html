@@ -468,7 +468,7 @@
       ['Publisher', g.publisher],
       ['Price', g.price ? `${g.currency||''}${g.price}` : null],
       ['Status', statusLabel(g.status)],
-      ['Notes', g.notes],
+      ['Notes', escHtml(g.notes)],
       ['Link', g.url ? `<a href="${escHtml(g.url)}" target="_blank">Open page ↗</a>` : null],
     ];
     rows.forEach(([label, value]) => {
