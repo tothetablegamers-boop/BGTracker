@@ -243,8 +243,10 @@
 
   if (!file) return;
 
-  showToast("Uploading image...");
+  imageUploading = true;
 
+  showToast("Uploading image...");
+    
   const formData = new FormData();
 
   formData.append("file", file);
