@@ -215,6 +215,62 @@
   let currentTab = 'list';
   let editingId = null;
 
+let editingId = null;
+
+async function uploadImage(input) {
+
+  const file = input.files[0];
+
+  if (!file) return;
+
+  showToast("Uploading image...");
+
+  const formData = new FormData();
+
+  formData.append("file", file);
+
+  formData.append(
+    "upload_preset",
+    "bg-convention-tracker"
+  );
+
+  try {
+
+    const response = await fetch(
+      "https://api.cloudinary.com/v1_1/dbw0c9dyb/image/upload",
+      {
+        method: "POST",
+        body: formData
+      }
+    );
+
+    const result = await response.json();
+
+    uploadedImageUrl = result.secure_url;
+
+    const preview =
+      document.getElementById("f-image-preview");
+
+    preview.src = uploadedImageUrl;
+    preview.style.display = "block";
+
+    showToast("Image uploaded");
+
+  } catch (err) {
+
+    console.error(err);
+
+    showToast("Upload failed");
+
+  }
+}
+
+// ── Init ──
+window.addEventListener('load', () => {
+  loadGames();
+});
+
+  
   // ── Init ──
   window.addEventListener('load', () => {
     loadGames();
