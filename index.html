@@ -745,8 +745,8 @@
       list.sort((a, b) => {
 
         const priorityDiff =
-          (priority[a.status] || 50) -
-          (priority[b.status] || 50);
+          (priority[a.status] || ?? 50) -
+          (priority[b.status] || ?? 50);
 
         if (priorityDiff !== 0) {
           return priorityDiff;
