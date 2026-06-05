@@ -674,7 +674,7 @@ const hallCount =
     return;
   }
 
-  let html = `
+  
 <div style="
   margin:16px;
   padding:16px;
@@ -700,7 +700,7 @@ const hallCount =
   <div>Halls: ${hallCount}</div>
 
 </div>
-`;
+;
     
   const statusGroups = {
     paid: [],
@@ -713,97 +713,7 @@ const hallCount =
       statusGroups[game.status].push(game);
     }
   });
-
-  let html = "";
-
-  const sections = [
-    ["paid", "💜 Paid"],
-    ["reserved", "🔖 Reserved"],
-    ["interested", "⭐ Interested"]
-  ];
-
-  sections.forEach(([status, title]) => {
-
-    const list = statusGroups[status];
-
-    if (!list.length) return;
-
-    list.sort((a,b) => {
-
-      const hallA = (a.hall || "").toUpperCase();
-      const hallB = (b.hall || "").toUpperCase();
-
-      if (hallA !== hallB) {
-        return hallA.localeCompare(hallB);
-      }
-
-      return (a.booth || "")
-        .localeCompare(
-          b.booth || "",
-          undefined,
-          { numeric: true }
-        );
-
-    });
-
-    html += `
-      <div class="route-section">
-        <h3>${title}</h3>
-    `;
-
-    let currentHall = "";
-
-    list.forEach(game => {
-
-      if (game.hall !== currentHall) {
-
-        currentHall = game.hall;
-
-        html += `
-          <div style="
-            padding:10px 16px;
-            color:var(--accent);
-            font-weight:700;
-          ">
-            ${currentHall || "Unknown Hall"}
-          </div>
-        `;
-      }
-
-      html += `
-        <div
-          class="route-item"
-          onclick="openGameModal('${game.id}')"
-        >
-          <div class="route-booth">
-            ${game.booth || "?"}
-          </div>
-
-          <div>
-            <div style="
-              font-weight:600;
-              font-size:0.9rem;
-            ">
-              ${escHtml(game.originalTitle)}
-            </div>
-
-            <div style="
-              font-size:0.75rem;
-              color:var(--muted);
-            ">
-              ${escHtml(game.publisher || "")}
-            </div>
-          </div>
-        </div>
-      `;
-    });
-
-    html += "</div>";
-
-  });
-
-  document.getElementById("main-content").innerHTML = html;
-
+  
 }
 
     let html = '';
