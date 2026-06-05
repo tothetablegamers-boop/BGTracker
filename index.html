@@ -659,21 +659,31 @@
       Object.entries(byConvention).forEach(([convention, list]) => {
         html += `<div class="route-section"><h3>${escHtml(convention)}</h3>`;
 
-        list.sort((a,b) => {
+        list.sort((a, b) => {
 
-      const hallA = (a.hall || '').toUpperCase();
-      const hallB = (b.hall || '').toUpperCase();
-
-      if (hallA !== hallB) {
-      return hallA.localeCompare(hallB);
-      }
-
-      return (a.booth || '')
-      .localeCompare(b.booth || '', undefined, {
-      numeric: true
-    });
-
-});
+          const priorityDiff =
+            (priority[a.status] || 50) -
+            (priority[b.status] || 50);
+        
+          if (priorityDiff !== 0) {
+            return priorityDiff;
+          }
+        
+          const hallA = (a.hall || '').toUpperCase();
+          const hallB = (b.hall || '').toUpperCase();
+        
+          if (hallA !== hallB) {
+            return hallA.localeCompare(hallB);
+          }
+        
+          return (a.booth || '')
+            .localeCompare(
+              b.booth || '',
+              undefined,
+              { numeric: true }
+            );
+        
+        });
         
         list.forEach(g => {
           html += `<div class="route-item" onclick="openGameModal('${escHtml(g.id)}')">
