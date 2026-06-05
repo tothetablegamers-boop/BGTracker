@@ -572,7 +572,15 @@
 }
 
   function submitForm() {
-    const title = document.getElementById('f-original-title').value.trim();
+
+  if (imageUploading) {
+    showToast("Please wait for image upload");
+    return;
+  }
+
+  const title =
+    document.getElementById('f-original-title')
+    .value.trim();
     const convention = document.getElementById('f-convention').value.trim();
     if (!title) { showToast('Please enter a game title'); return; }
     if (!convention) { showToast('Please enter a convention'); return; }
