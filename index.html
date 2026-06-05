@@ -291,16 +291,22 @@
     document.querySelector(".image-upload-area").style.display = "none";
     
     imageUploading = false;
+    saveBtn.disabled = true;
+    saveBtn.textContent = "Uploading...";
     showToast("Image uploaded");
 
-  } catch (err) {
+  } } catch (err) {
 
   imageUploading = false;
+
+  if (saveBtn) {
+    saveBtn.disabled = false;
+    saveBtn.textContent = "Save";
+  }
 
   console.error(err);
 
   showToast("Upload failed");
-
 }
 }
 
