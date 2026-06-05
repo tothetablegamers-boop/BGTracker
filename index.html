@@ -541,7 +541,7 @@
       price: document.getElementById('f-price').value        .trim(),
       currency: document.getElementById('f-currency').value.trim(),
       url: document.getElementById('f-url').value.trim(),
-      imageUrl: uploadImageUrl,
+      imageUrl: uploadedImageUrl || '',
       notes: document.getElementById('f-notes').value.trim(),
       status: selectedStatus,
       updatedAt: new Date().toISOString(),
