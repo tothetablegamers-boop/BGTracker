@@ -863,11 +863,18 @@
         <label>Apps Script URL</label>
         <input type="url" id="s-url" placeholder="https://script.google.com/..." 
           value="${escHtml(APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE' ? '' : APPS_SCRIPT_URL)}" />
-      </div>
-      <button class="btn btn-primary" onclick="saveSettings()">Save Settings</button>
-      <div style="margin-top:24px">
-        <button class="btn btn-secondary" onclick="exportData()">📤 Export JSON</button>
-      </div>
+      <div class="btn-row">
+      <button class="btn btn-secondary" onclick="closeModal('add-modal')">
+      Cancel
+      </button>
+
+      <button
+        id="save-btn"
+        class="btn btn-primary"
+        onclick="submitForm()">
+        Save
+      </button>
+</div>
       <div style="margin-top:10px">
         <button class="btn btn-danger" onclick="confirmClearData()">🗑️ Clear All Data</button>
       </div>
