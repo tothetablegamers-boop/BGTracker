@@ -245,6 +245,12 @@
 
   imageUploading = true;
 
+  const saveBtn = document.getElementById("save-btn");
+  if (saveBtn) {
+    saveBtn.disabled = true;
+    saveBtn.textContent = "Uploading...";
+  }
+
   showToast("Uploading image...");
     
   const formData = new FormData();
