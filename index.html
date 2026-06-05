@@ -531,6 +531,8 @@
     if (!title) { showToast('Please enter a game title'); return; }
     if (!convention) { showToast('Please enter a convention'); return; }
 
+     console.log("uploadedImageUrl =", uploadedImageUrl);
+    
     const gameData = {
       id: editingId || genId(),
       originalTitle: title,
