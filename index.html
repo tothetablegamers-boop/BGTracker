@@ -673,13 +673,13 @@
   const paidCount =
   routeGames.filter(g => g.status === "paid").length;
 
-const reservedCount =
+  const reservedCount =
   routeGames.filter(g => g.status === "reserved").length;
 
-const interestedCount =
+  const interestedCount =
   routeGames.filter(g => g.status === "interested").length;
 
-const hallCount =
+  const hallCount =
   new Set(
     routeGames.map(g => g.hall).filter(Boolean)
   ).size;
@@ -693,14 +693,12 @@ const hallCount =
     return;
   }
 
-  
-let html = `
-<div style="
+  <div style="
   margin:16px;
   padding:16px;
   background:var(--card);
   border-radius:var(--radius);
-">
+  ">
   <h2 style="margin-bottom:12px;">
     🎯 Route Summary
   </h2>
@@ -718,7 +716,7 @@ let html = `
   <div>Total Stops: ${routeGames.length}</div>
   <div>Halls: ${hallCount}</div>
 </div>
-`;
+;
     
   const statusGroups = {
     paid: [],
@@ -731,8 +729,6 @@ let html = `
       statusGroups[game.status].push(game);
     }
   });
-  
-}
 
     let html = '';
     if (Object.keys(byConvention).length === 0) {
