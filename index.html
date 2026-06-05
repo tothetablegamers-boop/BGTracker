@@ -267,7 +267,8 @@
 
     preview.src = uploadedImageUrl;
     preview.style.display = "block";
-
+    
+    document.querySelector(".image-upload-area").style.display = "none";
     showToast("Image uploaded");
 
   } catch (err) {
