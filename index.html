@@ -693,6 +693,7 @@
     return;
   }
   
+let html = `
 <div style="
   margin:16px;
   padding:16px;
@@ -715,8 +716,8 @@
 
   <div>Total Stops: ${routeGames.length}</div>
   <div>Halls: ${hallCount}</div>
-  </div>
-  ;
+</div>
+`;
     
   const statusGroups = {
     paid: [],
@@ -729,8 +730,6 @@
       statusGroups[game.status].push(game);
     }
   });
-
-    let html = '';
 
     const byConvention = {};
 
