@@ -652,7 +652,23 @@
     } else {
       Object.entries(byConvention).forEach(([convention, list]) => {
         html += `<div class="route-section"><h3>${escHtml(convention)}</h3>`;
-        list.sort((a,b) => (a.booth||'').localeCompare(b.booth||''));
+
+        list.sort((a,b) => {
+
+      const hallA = (a.hall || '').toUpperCase();
+      const hallB = (b.hall || '').toUpperCase();
+
+      if (hallA !== hallB) {
+      return hallA.localeCompare(hallB);
+      }
+
+      return (a.booth || '')
+      .localeCompare(b.booth || '', undefined, {
+      numeric: true
+    });
+
+});
+        
         list.forEach(g => {
           html += `<div class="route-item" onclick="openGameModal('${escHtml(g.id)}')">
             <div class="route-booth">${escHtml(g.booth||'?')}</div>
