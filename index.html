@@ -222,7 +222,13 @@
 
   let games = [];
   let uploadedImageUrl = '';
-  
+  const priority = {
+  paid: 1,
+  reserved: 2,
+  interested: 3,
+  collected: 99,
+  "not-available": 100
+  };
   let currentFilter = 'all';
   let currentSearch = '';
   let currentConvention = 'all';
