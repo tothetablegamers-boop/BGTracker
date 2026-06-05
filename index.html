@@ -731,6 +731,19 @@
   });
 
     let html = '';
+
+    const byConvention = {};
+
+    routeGames.forEach(game => {
+      const convention = game.convention || "Unknown Convention";
+    
+      if (!byConvention[convention]) {
+        byConvention[convention] = [];
+      }
+    
+      byConvention[convention].push(game);
+    });
+    
     if (Object.keys(byConvention).length === 0) {
       html = `<div class="empty-state"><div class="icon">🗺️</div><p>No active games to route</p></div>`;
     } else {
