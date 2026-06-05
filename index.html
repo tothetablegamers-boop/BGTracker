@@ -162,14 +162,29 @@
       <label>Convention Page URL</label>
       <input type="url" id="f-url" placeholder="https://..." />
     </div>
+
     <div class="form-group">
   <label>Game Cover</label>
+
+  <div class="image-upload-area"
+       onclick="document.getElementById('f-image-file').click()">
+
+    <div class="upload-icon">📷</div>
+
+    <p>Tap to upload a game cover</p>
+
+    <p style="font-size:0.7rem;">
+      Camera • Photo Library • Files
+    </p>
+
+  </div>
 
   <input
     type="file"
     id="f-image-file"
     accept="image/*"
     onchange="uploadImage(this)"
+    style="display:none"
   />
 
   <img
@@ -178,6 +193,7 @@
     style="display:none;margin-top:8px"
   />
 </div>
+    
     <div class="form-group">
       <label>Status</label>
       <div class="status-selector">
