@@ -512,6 +512,7 @@
 
   function clearForm() {
     uploadedImageUrl = '';
+    document.querySelector(".image-upload-area").style.display = "block";
     ['f-original-title','f-convention','f-hall','f-booth','f-publisher',
      'f-price','f-currency','f-url','f-notes'].forEach(id => {
       document.getElementById(id).value = '';
