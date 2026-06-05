@@ -278,15 +278,19 @@
     preview.style.display = "block";
     
     document.querySelector(".image-upload-area").style.display = "none";
+    
+    imageUploading = false;
     showToast("Image uploaded");
 
   } catch (err) {
 
-    console.error(err);
+  imageUploading = false;
 
-    showToast("Upload failed");
+  console.error(err);
 
-  }
+  showToast("Upload failed");
+
+}
 }
 
   // ── Init ──
