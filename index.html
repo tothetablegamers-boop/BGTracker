@@ -541,15 +541,28 @@
   }
 
   function previewImageUrl(url) {
-    const preview = document.getElementById('f-image-preview');
-    if (url && url.startsWith('http')) {
-      preview.src = url;
-      preview.style.display = 'block';
-    } else {
-      preview.style.display = 'none';
-      preview.src = '';
-    }
+
+  const preview =
+    document.getElementById('f-image-preview');
+
+  const uploadArea =
+    document.querySelector('.image-upload-area');
+
+  if (url && url.startsWith('http')) {
+
+    preview.src = url;
+    preview.style.display = 'block';
+
+    uploadArea.style.display = 'none';
+
+  } else {
+
+    preview.style.display = 'none';
+    preview.src = '';
+
+    uploadArea.style.display = 'block';
   }
+}
 
   function submitForm() {
     const title = document.getElementById('f-original-title').value.trim();
