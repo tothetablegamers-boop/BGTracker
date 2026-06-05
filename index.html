@@ -670,20 +670,6 @@
       g.status !== "not-available"
   );
 
-  const paidCount =
-  routeGames.filter(g => g.status === "paid").length;
-
-  const reservedCount =
-  routeGames.filter(g => g.status === "reserved").length;
-
-  const interestedCount =
-  routeGames.filter(g => g.status === "interested").length;
-
-  const hallCount =
-  new Set(
-    routeGames.map(g => g.hall).filter(Boolean)
-  ).size;
-    
   if (routeGames.length === 0) {
     document.getElementById("main-content").innerHTML =
       `<div class="empty-state">
@@ -692,102 +678,137 @@
       </div>`;
     return;
   }
-  
-let html = `
-<div style="
-  margin:16px;
-  padding:16px;
-  background:var(--card);
-  border-radius:var(--radius);
-">
-  <h2 style="margin-bottom:12px;">
-    🎯 Route Summary
-  </h2>
 
-  <div>💜 Paid: ${paidCount}</div>
-  <div>🔖 Reserved: ${reservedCount}</div>
-  <div>⭐ Interested: ${interestedCount}</div>
+  const paidCount =
+    routeGames.filter(g => g.status === "paid").length;
 
-  <hr style="
-    margin:12px 0;
-    border:none;
-    border-top:1px solid rgba(255,255,255,.1);
-  ">
+  const reservedCount =
+    routeGames.filter(g => g.status === "reserved").length;
 
-  <div>Total Stops: ${routeGames.length}</div>
-  <div>Halls: ${hallCount}</div>
-</div>
-`;
-    
-  const statusGroups = {
-    paid: [],
-    reserved: [],
-    interested: []
-  };
+  const interestedCount =
+    routeGames.filter(g => g.status === "interested").length;
+
+  const hallCount =
+    new Set(
+      routeGames
+        .map(g => g.hall)
+        .filter(Boolean)
+    ).size;
+
+  let html = `
+    <div style="
+      margin:16px;
+      padding:16px;
+      background:var(--card);
+      border-radius:var(--radius);
+    ">
+      <h2 style="margin-bottom:12px;">
+        🎯 Route Summary
+      </h2>
+
+      <div>💜 Paid: ${paidCount}</div>
+      <div>🔖 Reserved: ${reservedCount}</div>
+      <div>⭐ Interested: ${interestedCount}</div>
+
+      <hr style="
+        margin:12px 0;
+        border:none;
+        border-top:1px solid rgba(255,255,255,.1);
+      ">
+
+      <div>Total Stops: ${routeGames.length}</div>
+      <div>Halls: ${hallCount}</div>
+    </div>
+  `;
+
+  const byConvention = {};
 
   routeGames.forEach(game => {
-    if (statusGroups[game.status]) {
-      statusGroups[game.status].push(game);
+    const convention =
+      game.convention || "Unknown Convention";
+
+    if (!byConvention[convention]) {
+      byConvention[convention] = [];
     }
+
+    byConvention[convention].push(game);
   });
 
-    const byConvention = {};
+  Object.entries(byConvention).forEach(
+    ([convention, list]) => {
 
-    routeGames.forEach(game => {
-      const convention = game.convention || "Unknown Convention";
-    
-      if (!byConvention[convention]) {
-        byConvention[convention] = [];
-      }
-    
-      byConvention[convention].push(game);
-    });
-    
-    if (Object.keys(byConvention).length === 0) {
-      html = `<div class="empty-state"><div class="icon">🗺️</div><p>No active games to route</p></div>`;
-    } else {
-      Object.entries(byConvention).forEach(([convention, list]) => {
-        html += `<div class="route-section"><h3>${escHtml(convention)}</h3>`;
+      html += `
+        <div class="route-section">
+          <h3>${escHtml(convention)}</h3>
+      `;
 
-        list.sort((a, b) => {
+      list.sort((a, b) => {
 
-          const priorityDiff =
-            (priority[a.status] || 50) -
-            (priority[b.status] || 50);
-        
-          if (priorityDiff !== 0) {
-            return priorityDiff;
-          }
-        
-          const hallA = (a.hall || '').toUpperCase();
-          const hallB = (b.hall || '').toUpperCase();
-        
-          if (hallA !== hallB) {
-            return hallA.localeCompare(hallB);
-          }
-        
-          return (a.booth || '')
-            .localeCompare(
-              b.booth || '',
-              undefined,
-              { numeric: true }
-            );
-        
-        });
-        
-        list.forEach(g => {
-          html += `<div class="route-item" onclick="openGameModal('${escHtml(g.id)}')">
-            <div class="route-booth">${escHtml(g.booth||'?')}</div>
-            <div>
-              <div style="font-weight:600;font-size:0.9rem">${escHtml(g.originalTitle||'Untitled')}</div>
-              <div style="font-size:0.75rem;color:var(--muted)">${escHtml(g.hall||'')} · ${statusLabel(g.status)}</div>
-            </div>
-          </div>`;
-        });
-        html += `</div>`;
+        const priorityDiff =
+          (priority[a.status] || 50) -
+          (priority[b.status] || 50);
+
+        if (priorityDiff !== 0) {
+          return priorityDiff;
+        }
+
+        const hallA =
+          (a.hall || "").toUpperCase();
+
+        const hallB =
+          (b.hall || "").toUpperCase();
+
+        if (hallA !== hallB) {
+          return hallA.localeCompare(hallB);
+        }
+
+        return (a.booth || "")
+          .localeCompare(
+            b.booth || "",
+            undefined,
+            { numeric: true }
+          );
       });
+
+      list.forEach(g => {
+
+        html += `
+          <div
+            class="route-item"
+            onclick="openGameModal('${escHtml(g.id)}')"
+          >
+            <div class="route-booth">
+              ${escHtml(g.booth || "?")}
+            </div>
+
+            <div>
+              <div style="
+                font-weight:600;
+                font-size:0.9rem;
+              ">
+                ${escHtml(g.originalTitle || "Untitled")}
+              </div>
+
+              <div style="
+                font-size:0.75rem;
+                color:var(--muted);
+              ">
+                ${escHtml(g.hall || "")}
+                ·
+                ${statusLabel(g.status)}
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      html += `</div>`;
     }
-    document.getElementById('main-content').innerHTML = html;
+    );
+
+  document.getElementById(
+    "main-content"
+  ).innerHTML = html;
   }
 
   // ── Stats Tab ──
