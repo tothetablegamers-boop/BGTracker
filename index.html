@@ -674,6 +674,34 @@ const hallCount =
     return;
   }
 
+  let html = `
+<div style="
+  margin:16px;
+  padding:16px;
+  background:var(--card);
+  border-radius:var(--radius);
+">
+
+  <h2 style="margin-bottom:12px;">
+    🎯 Route Summary
+  </h2>
+
+  <div>💜 Paid: ${paidCount}</div>
+  <div>🔖 Reserved: ${reservedCount}</div>
+  <div>⭐ Interested: ${interestedCount}</div>
+
+  <hr style="
+    margin:12px 0;
+    border:none;
+    border-top:1px solid rgba(255,255,255,.1);
+  ">
+
+  <div>Total Stops: ${routeGames.length}</div>
+  <div>Halls: ${hallCount}</div>
+
+</div>
+`;
+    
   const statusGroups = {
     paid: [],
     reserved: [],
