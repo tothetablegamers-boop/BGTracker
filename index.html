@@ -567,7 +567,11 @@
       price: document.getElementById('f-price').value        .trim(),
       currency: document.getElementById('f-currency').value.trim(),
       url: document.getElementById('f-url').value.trim(),
-      imageUrl: uploadedImageUrl || '',
+      imageUrl:
+      uploadedImageUrl ||
+      (editingId
+    ? games.find(g => g.id === editingId)?.imageUrl
+    : ''),
       notes: document.getElementById('f-notes').value.trim(),
       status: selectedStatus,
       updatedAt: new Date().toISOString(),
