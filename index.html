@@ -197,11 +197,21 @@
     <div class="form-group">
       <label>Status</label>
       <div class="status-selector">
-        <div class="status-option status-interested selected" onclick="selectStatus(this,'interested')">⭐ Interested</div>
-        <div class="status-option status-reserved" onclick="selectStatus(this,'reserved')">🔖 Reserved</div>
-        <div class="status-option status-paid" onclick="selectStatus(this,'paid')">💜 Paid</div>
-        <div class="status-option status-collected" onclick="selectStatus(this,'collected')">✅ Collected</div>
-        <div class="status-option status-not-available" onclick="selectStatus(this,'not-available')">❌ Not Available</div>
+        <div class="status-option status-interested selected"
+       data-status="interested"
+       onclick="selectStatus(this,'interested')"></div>
+      <div class="status-option status-reserved"
+       data-status="reserved"
+       onclick="selectStatus(this,'reserved')</div>">
+       <div class="status-option status-paid"
+       data-status="paid"
+       onclick="selectStatus(this,'paid')"></div>
+       <div class="status-option status-collected"
+     data-status="collected"
+     onclick="selectStatus(this,'collected')"></div>
+        <div class="status-option status-not-available"
+     data-status="not-available"
+     onclick="selectStatus(this,'not-available')"></div>
       </div>
     </div>
     <div class="form-group">
