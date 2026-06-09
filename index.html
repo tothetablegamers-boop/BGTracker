@@ -376,9 +376,7 @@
 
   loadGames();
   syncPendingQueue();
-  });
-  
-  // Auto refresh every 60 seconds
+
   setInterval(() => {
 
     if (!document.hidden) {
@@ -387,7 +385,7 @@
 
   }, 60000);
 
-  });
+});
 
   document.addEventListener(
     "visibilitychange",
