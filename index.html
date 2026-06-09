@@ -788,11 +788,21 @@
     showToast("Unexpected server response");
     }
   })
-    .catch(error => {
-      console.error(error);
-      showToast("Network error");
-    });
-  }
+   .catch(error => {
+  
+    console.error(error);
+  
+    savePendingSync(
+      action,
+      payload
+    );
+  
+    showToast(
+      "Offline - queued for sync"
+    );
+  
+  });
+    }
   function savePendingSync(action, payload) {
   
     pendingSyncQueue.push({
