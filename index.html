@@ -1028,42 +1028,42 @@
 
       list.sort((a, b) => {
 
-       const statusDiff =
+      const statusDiff =
         (statusPriority[a.status] ?? 50)
         -
         (statusPriority[b.status] ?? 50);
-        
-        if (statusDiff !== 0)
-          return statusDiff;
-        
-        return (
-          (a.priority || 3)
-          -
-          (b.priority || 3)
-        );
-
-        if (priorityDiff !== 0) {
-          return priorityDiff;
-        }
-
+    
+      if (statusDiff !== 0) {
+        return statusDiff;
+      }
+    
+      const priorityDiff =
+        (Number(a.priority) || 3)
+        -
+        (Number(b.priority) || 3);
+    
+      if (priorityDiff !== 0) {
+        return priorityDiff;
+      }
+      
         const hallA =
-        String(a.hall ?? "").toUpperCase();
-
+          String(a.hall || "").toUpperCase();
+      
         const hallB =
-        String(b.hall ?? "").toUpperCase();
-        
+          String(b.hall || "").toUpperCase();
+      
         if (hallA !== hallB) {
           return hallA.localeCompare(hallB);
         }
-
+      
         return String(a.booth || "")
-      .localeCompare(
-        String(b.booth || ""),
-        undefined,
-        { numeric: true }
-      );
+          .localeCompare(
+            String(b.booth || ""),
+            undefined,
+            { numeric: true }
+          );
       });
-
+      
       list.forEach(g => {
 
         html += `
