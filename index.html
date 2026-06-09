@@ -291,8 +291,8 @@
     document.querySelector(".image-upload-area").style.display = "none";
     
     imageUploading = false;
-    saveBtn.disabled = true;
-    saveBtn.textContent = "Uploading...";
+    saveBtn.disabled = false;
+    saveBtn.textContent = "Save";
     showToast("Image uploaded");
 
   } catch (err) {
