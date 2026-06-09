@@ -338,13 +338,19 @@
   }
 
   // ── Tab Switching ──
-  function switchTab(tab, btn) {
-    currentTab = tab;
-    document.querySelectorAll('.bottom-nav button').forEach(b => b.classList.remove('active'));
+ function switchTab(tab, btn) {
+  currentTab = tab;
+
+  document
+    .querySelectorAll('.bottom-nav button')
+    .forEach(b => b.classList.remove('active'));
+
+  if (btn) {
     btn.classList.add('active');
-    renderTab();
   }
 
+  renderTab();
+}
   function renderTab() {
     if (currentTab === 'list') renderListTab();
     else if (currentTab === 'route') renderRouteTab();
