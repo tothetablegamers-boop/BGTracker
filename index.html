@@ -762,12 +762,18 @@
   const byConvention = {};
 
   routeGames.forEach(game => {
-    const convention =
-      game.convention || "Unknown Convention";
 
-    if (!byConvention[convention]) {
-      byConvention[convention] = [];
-    }
+  if (!game) return;
+
+  const convention =
+    game.convention || "Unknown Convention";
+
+  if (!byConvention[convention]) {
+    byConvention[convention] = [];
+  }
+
+  byConvention[convention].push(game);
+  });
 
     byConvention[convention].push(game);
   });
