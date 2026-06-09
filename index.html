@@ -727,21 +727,33 @@
     },
     body: JSON.stringify(payload)
   })
-  .then(response => response.json())
-  .then(result => {
-    console.log("Apps Script Response:", result);
+   .then(response => response.text())
+  .then(text => {
+
+  console.log("Raw Apps Script Response:", text);
+
+  try {
+
+    const result = JSON.parse(text);
 
     if (result.success) {
       showToast("Synced to Google Sheets");
     } else {
       showToast("Sync failed");
     }
+
+  } catch (err) {
+
+    console.error("Invalid JSON:", text);
+
+    showToast("Unexpected server response");
+    }
   })
-  .catch(error => {
-    console.error(error);
-    showToast("Network error");
-  });
-}
+    .catch(error => {
+      console.error(error);
+      showToast("Network error");
+    });
+  }
 
   // ── Route Tab ──
   function renderRouteTab() {
