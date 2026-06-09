@@ -321,8 +321,34 @@
 
   // ── Init ──
   window.addEventListener('load', () => {
+
   loadGames();
+
+  // Auto refresh every 60 seconds
+  setInterval(() => {
+
+    if (!document.hidden) {
+      loadGames();
+    }
+
+  }, 60000);
+
   });
+
+  document.addEventListener(
+    "visibilitychange",
+    () => {
+  
+      if (!document.hidden) {
+  
+        console.log("App active → refreshing");
+  
+        loadGames();
+  
+      }
+  
+    }
+  );
 
   
   // ── Helpers ──
