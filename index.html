@@ -471,6 +471,7 @@
           notes: g.notes,
           updatedAt: g.last_updated,
         }));
+        console.log(games);
         localStorage.setItem('bg_games', JSON.stringify(games));
         renderTab();
       })
