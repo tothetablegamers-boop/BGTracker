@@ -352,10 +352,27 @@
   renderTab();
 }
   function renderTab() {
+    console.log("Route tab opened");
+    console.log("Games:", games);
+
+    try{
+      
     if (currentTab === 'list') renderListTab();
     else if (currentTab === 'route') renderRouteTab();
     else if (currentTab === 'stats') renderStatsTab();
     else if (currentTab === 'settings') renderSettingsTab();
+    } catch(err) {
+
+    console.error("Route tab error:", err);
+
+    document.getElementById("main-content").innerHTML = `
+      <div class="empty-state">
+        <div class="icon">⚠️</div>
+        <p>Route tab error</p>
+        <pre>${err.message}</pre>
+      </div>
+    `;
+  }
   }
 
   // ── Load Games ──
