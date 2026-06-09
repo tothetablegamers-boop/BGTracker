@@ -725,7 +725,6 @@
       id: editingId || genId(),
       originalTitle: title,
       convention,
-      priority:Number(document.getElementById("f-priority").value),
       hall: document.getElementById('f-hall').value.trim(),
       booth: document.getElementById('f-booth').value.trim(),
       publisher: document.getElementById('f-publisher').value.trim(),
@@ -739,12 +738,7 @@
     : ''),
       notes: document.getElementById('f-notes').value.trim(),
       status: selectedStatus,
-      priority:
-      document
-        .getElementById(
-          "f-priority"
-        )
-        .value,
+      priority: Number( document.getElementById("f-priority").value),
       updatedAt: new Date().toISOString(),
     };
 
