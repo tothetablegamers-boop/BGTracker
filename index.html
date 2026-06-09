@@ -738,6 +738,23 @@
       g.status !== "not-available"
   );
 
+
+  // DEBUG CHECK
+  routeGames.forEach(g => {
+  if (
+    g.hall !== undefined &&
+    g.hall !== null &&
+    typeof g.hall !== "string"
+  ) {
+    console.log(
+      "Bad hall value:",
+      g.originalTitle,
+      g.hall,
+      typeof g.hall
+    );
+  }
+});
+
   if (routeGames.length === 0) {
     document.getElementById("main-content").innerHTML =
       `<div class="empty-state">
