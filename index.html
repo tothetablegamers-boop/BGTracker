@@ -819,6 +819,65 @@
   
   }
 
+  async function syncPendingQueue() {
+
+    if (
+      pendingSyncQueue.length === 0
+    ) {
+      return;
+    }
+  
+    console.log(
+      "Syncing queue:",
+      pendingSyncQueue.length
+    );
+  
+    const queueCopy =
+      [...pendingSyncQueue];
+  
+    pendingSyncQueue = [];
+  
+    localStorage.setItem(
+      "pendingSyncQueue",
+      JSON.stringify([])
+    );
+  
+    for (const item of queueCopy) {
+  
+      try {
+  
+        await fetch(
+          APPS_SCRIPT_URL,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type":
+                "text/plain"
+            },
+            body: JSON.stringify({
+              action:
+                item.action,
+              ...item.payload
+            })
+          }
+        );
+  
+      } catch (err) {
+  
+        pendingSyncQueue.push(item);
+  
+      }
+  
+    }
+  
+    localStorage.setItem(
+      "pendingSyncQueue",
+      JSON.stringify(
+        pendingSyncQueue
+      )
+    );
+  
+  }
   
   // ── Route Tab ──
   function renderRouteTab() {
