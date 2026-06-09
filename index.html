@@ -729,6 +729,12 @@
     : ''),
       notes: document.getElementById('f-notes').value.trim(),
       status: selectedStatus,
+      priority:
+      document
+        .getElementById(
+          "f-priority"
+        )
+        .value,
       updatedAt: new Date().toISOString(),
     };
 
