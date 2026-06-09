@@ -810,12 +810,12 @@
           return hallA.localeCompare(hallB);
         }
 
-        return (a.booth || "")
-          .localeCompare(
-            b.booth || "",
-            undefined,
-            { numeric: true }
-          );
+        return String(a.booth || "")
+      .localeCompare(
+        String(b.booth || ""),
+        undefined,
+        { numeric: true }
+      );
       });
 
       list.forEach(g => {
