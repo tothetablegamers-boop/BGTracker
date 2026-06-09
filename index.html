@@ -762,9 +762,15 @@
 
     const result = JSON.parse(text);
 
-    if (result.success) {
-      showToast("Synced to Google Sheets");
-    } else {
+   if (result.success) {
+
+  showToast("Synced to Google Sheets");
+
+  setTimeout(() => {
+    loadGames();
+  }, 500);
+
+  }else {
       showToast("Sync failed");
     }
 
