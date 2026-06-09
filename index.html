@@ -828,11 +828,11 @@
         }
 
         const hallA =
-          (a.hall || "").toUpperCase();
+        String(a.hall ?? "").toUpperCase();
 
         const hallB =
-          (b.hall || "").toUpperCase();
-
+        String(b.hall ?? "").toUpperCase();
+        
         if (hallA !== hallB) {
           return hallA.localeCompare(hallB);
         }
