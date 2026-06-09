@@ -236,7 +236,29 @@
       </select>
     
     </div>
+    <div class="form-group">
+      <label>Priority</label>
     
+      <select id="f-priority">
+    
+        <option value="1">
+          🔥 Must Buy
+        </option>
+    
+        <option value="2">
+          ⭐ High Priority
+        </option>
+    
+        <option value="3" selected>
+          📌 Normal
+        </option>
+    
+        <option value="4">
+          ⏳ Low Priority
+        </option>
+    
+      </select>
+    </div>
     <div class="form-group">
       <label for="f-notes">Notes</label>
     <textarea id="f-notes" rows="3" placeholder="Any notes..."></textarea>
@@ -458,6 +480,7 @@
           publisher: g.publisher,
           price: g.original_price,
           currency: g.original_currency,
+          priority: g.priority || 3,
           url: g.convention_url,
           imageUrl: g.image_url,
           status: g.status,
