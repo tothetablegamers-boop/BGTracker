@@ -330,7 +330,9 @@
   window.addEventListener('load', () => {
 
   loadGames();
-
+  syncPendingQueue();
+  });
+  
   // Auto refresh every 60 seconds
   setInterval(() => {
 
