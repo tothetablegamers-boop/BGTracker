@@ -727,11 +727,12 @@
     routeGames.filter(g => g.status === "interested").length;
 
   const hallCount =
-    new Set(
-      routeGames
-        .map(g => g.hall)
-        .filter(Boolean)
-    ).size;
+  new Set(
+    routeGames
+      .filter(Boolean)
+      .map(g => g.hall)
+      .filter(Boolean)
+  ).size;
 
   let html = `
     <div style="
