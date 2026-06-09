@@ -793,7 +793,23 @@
       showToast("Network error");
     });
   }
+  function savePendingSync(action, payload) {
+  
+    pendingSyncQueue.push({
+      action,
+      payload
+    });
+  
+    localStorage.setItem(
+      "pendingSyncQueue",
+      JSON.stringify(
+        pendingSyncQueue
+      )
+    );
+  
+  }
 
+  
   // ── Route Tab ──
   function renderRouteTab() {
 
