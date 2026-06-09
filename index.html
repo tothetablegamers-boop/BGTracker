@@ -553,10 +553,11 @@
 
   function renderGameCard(g) {
     
-    const priorityIcon = {
-    high: "🔥",
-    medium: "⭐",
-    low: "💭"
+   const priorityIcon = {
+      1: "🔥",
+      2: "⭐",
+      3: "📌",
+      4: "⏳"
     }[g.priority] || "";
     const img = g.imageUrl
       ? `<div class="game-card-image"><img src="${escHtml(g.imageUrl)}" alt="" loading="lazy" /></div>`
