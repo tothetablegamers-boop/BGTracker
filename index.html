@@ -1049,9 +1049,19 @@
 
       list.sort((a, b) => {
 
-        const priorityDiff =
-          (priority[a.status] ?? 50) -
-          (priority[b.status] ?? 50);
+       const statusDiff =
+        (statusPriority[a.status] ?? 50)
+        -
+        (statusPriority[b.status] ?? 50);
+        
+        if (statusDiff !== 0)
+          return statusDiff;
+        
+        return (
+          (a.priority || 3)
+          -
+          (b.priority || 3)
+        );
 
         if (priorityDiff !== 0) {
           return priorityDiff;
