@@ -559,11 +559,11 @@
     // Set status
     selectedStatus = g.status || 'interested';
     document.querySelectorAll('.status-option').forEach(el => {
-      el.classList.toggle('selected', el.dataset.status === selectedStatus};
-     });
-        <div class="status-option status-interested"
-     data-status="interested"
-     onclick="selectStatus(this,'interested')">
+  el.classList.toggle(
+    'selected',
+    el.dataset.status === selectedStatus
+  );
+});
        
     document.getElementById('add-modal').classList.add('open');
   }
