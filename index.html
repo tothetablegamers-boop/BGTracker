@@ -573,9 +573,9 @@
       ${img}
       <div class="game-card-body">
       <div class="game-card-title">
-        ${priorityIcon} ${escHtml(g.originalTitle || 'Untitled')}
+        ${priorityIcon} ${escHtml(g.englishTitle || g.originalTitle)}}
       </div>
-        ${g.publisher ? `<div class="game-card-original">${escHtml(g.publisher)}</div>` : ''}
+        ${g.publisher ? `<div class="game-card-original">${escHtml(g.originalTitle || 'Untitled')${escHtml(g.publisher)}</div>` : ''}
         <div class="game-card-meta">${[g.convention,g.hall,g.booth].filter(Boolean).map(escHtml).join(' · ')}</div>
         <div class="game-card-footer">
           <span class="status-badge status-${escHtml(g.status||'interested')}">${statusLabel(g.status)}</span>
