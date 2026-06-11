@@ -568,7 +568,7 @@
     return `<div class="stats-bar">
       <div class="stat-chip"><div class="num">${total}</div><div class="lbl">Total</div></div>
       <div class="stat-chip"><div class="num">${collected}</div><div class="lbl">Collected</div></div>
-      <div class="stat-chip"><div class="num">${spent > 0 ? spent.toFixed(0) : '—'}</div><div class="lbl">Spending (SGD)</div></div>
+      <div class="stat-chip"><div class="num">${spent > 0 ? spent.toFixed(2) : '—'}</div><div class="lbl">Spending (SGD)</div></div>
     </div>`;
   }
 
