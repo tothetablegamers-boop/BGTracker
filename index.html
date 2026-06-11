@@ -1134,7 +1134,7 @@
     });
     const totalSpent = games
       .filter(g => ['paid','collected'].includes(g.status))
-      .reduce((s,g) => s + (parseFloat(g.price)||0), 0);
+     .reduce((s,g) => s + (parseFloat(g.sgdPrice)||0),  0);
 
     let html = `<div style="padding:20px">
       <h2 style="margin-bottom:16px;color:var(--accent)">📊 Stats</h2>
