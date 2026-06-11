@@ -584,7 +584,7 @@
       ${img}
       <div class="game-card-body">
       <div class="game-card-title">
-        ${priorityIcon} ${escHtml(g.englishTitle || g.originalTitle)}}
+        ${priorityIcon} ${escHtml(g.englishTitle || g.originalTitle)}
       </div>
         ${g.publisher ? `<div class="game-card-original">${escHtml(g.originalTitle || 'Untitled')${escHtml(g.publisher)}</div>` : ''}
         <div class="game-card-meta">${[g.convention,g.hall,g.booth].filter(Boolean).map(escHtml).join(' · ')}</div>
