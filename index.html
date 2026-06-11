@@ -560,7 +560,7 @@
     const total = list.length;
     const collected = list.filter(g => g.status === 'collected').length;
     const spent = list.filter(g => ['paid','collected'].includes(g.status))
-      .reduce((s,g) => s + (parseFloat(g.price)||0), 0);
+     .reduce( (s,g) => s + (parseFloat(g.sgdPrice)||0),0);
     return `<div class="stats-bar">
       <div class="stat-chip"><div class="num">${total}</div><div class="lbl">Total</div></div>
       <div class="stat-chip"><div class="num">${collected}</div><div class="lbl">Collected</div></div>
