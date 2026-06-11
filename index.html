@@ -1171,7 +1171,7 @@ function syncToServer(data, action) {
         <div class="stat-chip"><div class="num">${byStatus['paid']||0}</div><div class="lbl">Paid</div></div>
         <div class="stat-chip"><div class="num">${byStatus['collected']||0}</div><div class="lbl">Collected</div></div>
         <div class="stat-chip"><div class="num">${byStatus['not-available']||0}</div><div class="lbl">N/A</div></div>
-        <div class="stat-chip"><div class="num">${totalSpent > 0 ? totalSpent.toFixed(2) : '—'}</div><div class="lbl">Total Spent</div></div>
+        <div class="stat-chip"><div class="num">${totalSpent > 0 ? totalSpent.toFixed(2) : '—'}</div><div class="lbl">Spending (SGD)</div></div>
       </div>
     </div>`;
     document.getElementById('main-content').innerHTML = html;
