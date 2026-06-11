@@ -795,25 +795,47 @@
   }
 
   // ── Sync to Server ──
- function syncToServer(data, action) {
+function syncToServer(data, action) {
+
   if (!APPS_SCRIPT_URL) return;
 
-  const payload = {
-    action: action,
-    game_id: data.id,
-    original_title: data.originalTitle,
-    priority: data.priority,
-    convention: data.convention,
-    hall: data.hall,
-    booth_number: data.booth,
-    publisher: data.publisher,
-    original_price: data.price,
-    original_currency: data.currency,
-    convention_url: data.url,
-    image_url: data.imageUrl,
-    status: data.status,
-    notes: data.notes
-  };
+  let payload;
+
+  if (action === "deleteGame") {
+
+    payload = {
+      action,
+      game_id: data.id
+    };
+
+  } else {
+
+    payload = {
+      action,
+      game_id: data.id,
+      original_title: data.originalTitle,
+      priority: data.priority,
+      convention: data.convention,
+      hall: data.hall,
+      booth_number: data.booth,
+      publisher: data.publisher,
+      original_price: data.price,
+      original_currency: data.currency,
+      convention_url: data.url,
+      image_url: data.imageUrl,
+      status: data.status,
+      notes: data.notes
+    };
+
+  }
+
+  fetch(APPS_SCRIPT_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "text/plain"
+    },
+    body: JSON.stringify(payload)
+  })
 
   fetch(APPS_SCRIPT_URL, {
     method: "POST",
