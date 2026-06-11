@@ -343,6 +343,10 @@
 
     const result = await response.json();
 
+      if (!result.secure_url) {
+      throw new Error("Upload failed");
+}
+
     uploadedImageUrl = result.secure_url;
 
     const preview =
