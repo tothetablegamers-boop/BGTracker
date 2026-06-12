@@ -862,14 +862,17 @@
     localStorage.setItem('bg_games', JSON.stringify(games));
     const isEdit = !!editingId;
 
-    closeModal("add-modal");
-    
+    const action =
+      editingId
+      ? "updateGame"
+      : "addGame";
+  
     syncToServer(
-      gameData,
-      isEdit
-        ? "updateGame"
-        : "addGame"
-    );
+    gameData,
+    action
+  );
+
+closeModal("add-modal");
   }
 
   // ── Delete ──
