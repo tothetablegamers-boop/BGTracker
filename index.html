@@ -155,6 +155,57 @@
       </div>
       <div class="form-group">
 
+      <div
+      class="modal-overlay"
+      id="map-modal">
+    
+    <div class="modal">
+    
+    <div class="modal-handle"></div>
+    
+    <h2>Convention Map</h2>
+    
+    <div class="form-group">
+    <label>Convention</label>
+    <input id="m-convention">
+    </div>
+    
+    <div class="form-group">
+    <label>Hall</label>
+    <input id="m-hall">
+    </div>
+    
+    <button
+    class="btn btn-secondary"
+    onclick="
+    document
+    .getElementById(
+    'm-map-file'
+    ).click()
+    ">
+    Choose Map
+    </button>
+    
+    <input
+    type="file"
+    id="m-map-file"
+    accept="image/*,.pdf"
+    style="display:none"
+    onchange="
+    uploadConventionMap(this)
+    ">
+    
+    <div id="map-preview"></div>
+    
+    <button
+    class="btn btn-primary"
+    onclick="saveConventionMap()">
+    Save Map
+    </button>
+    
+    </div>
+    </div>
+          
   <label for="f-currency">
     Currency
   </label>
