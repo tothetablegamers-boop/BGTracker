@@ -860,10 +860,16 @@
     }
 
     localStorage.setItem('bg_games', JSON.stringify(games));
-    closeModal('add-modal');
-    renderTab();
-    showToast(editingId ? 'Game updated!' : 'Game added!');
-    syncToServer(gameData, editingId ? 'updateGame' : 'addGame');
+    const isEdit = !!editingId;
+
+    closeModal("add-modal");
+    
+    syncToServer(
+      gameData,
+      isEdit
+        ? "updateGame"
+        : "addGame"
+    );
   }
 
   // ── Delete ──
