@@ -342,6 +342,12 @@
   let currentTab = 'list';
   let editingId = null;
 
+
+  let activeConvention =
+  localStorage.getItem(
+    "activeConvention"
+  ) || "all";
+
   async function uploadImage(input) {
 
   const file = input.files[0];
@@ -1005,13 +1011,52 @@ function syncToServer(data, action) {
   
   // ── Route Tab ──
   function renderRouteTab() {
-
+  
   const routeGames = games.filter(
     g =>
       g.status !== "collected" &&
       g.status !== "not-available"
   );
 
+  const conventions =
+  getConventions();
+
+let html = `
+<div class="convention-selector">
+  <select
+    onchange="
+      activeConvention=this.value;
+      localStorage.setItem(
+        'activeConvention',
+        this.value
+      );
+      renderRouteTab();
+    "
+  >
+    <option value="all">
+      All Conventions
+    </option>
+
+    ${conventions.map(c => `
+      <option
+        value="${escHtml(c)}"
+        ${activeConvention === c
+          ? "selected"
+          : ""}
+      >
+        ${escHtml(c)}
+      </option>
+      `).join("")}
+    </select>
+  </div>
+  `;
+
+    if (activeConvention !== "all") {
+  routeGames = routeGames.filter(
+    g =>
+      g.convention === activeConvention
+  );
+}
 
   // DEBUG CHECK
   routeGames.forEach(g => {
