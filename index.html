@@ -1573,39 +1573,49 @@ let html = `
 
   // ── Settings Tab ──
   function renderSettingsTab() {
-    
-    <h3 style="margin-top:30px">
-    🗺️ Convention Maps
-    </h3>
-    
-    <button
-      class="btn btn-primary"
-      onclick="openMapManager()">
-      Manage Maps
-    </button>
-    let html = `<div style="padding:20px">
-      <h2 style="margin-bottom:16px;color:var(--accent)">⚙️ Settings</h2>
+
+    let html = `
+    <div style="padding:20px">
+  
+      <h2 style="
+        margin-bottom:16px;
+        color:var(--accent)">
+        ⚙️ Settings
+      </h2>
+  
+      <div style="margin-bottom:20px">
+  
+        <h3>🗺️ Convention Maps</h3>
+  
+        <button
+          class="btn btn-primary"
+          onclick="openMapManager()">
+          Manage Maps
+        </button>
+  
+      </div>
+  
       <div class="form-group">
         <label>Apps Script URL</label>
-        <input type="url" id="s-url" placeholder="https://script.google.com/..." 
-          value="${escHtml(APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE' ? '' : APPS_SCRIPT_URL)}" />
+  
+        <input
+          type="url"
+          id="s-url"
+          value="${escHtml(APPS_SCRIPT_URL)}">
       </div>
-      <div class="btn-row">
-      <button class="btn btn-secondary" onclick="closeModal('add-modal')">
-      Cancel
+  
+      <button
+        class="btn btn-primary"
+        onclick="saveSettings()">
+        Save Settings
       </button>
-
-     <button
-    class="btn btn-primary"
-    onclick="saveSettings()">
-     Save Settings
-    </button>
-  </div>
-      <div style="margin-top:10px">
-        <button class="btn btn-danger" onclick="confirmClearData()">🗑️ Clear All Data</button>
-      </div>
-    </div>`;
-    document.getElementById('main-content').innerHTML = html;
+  
+    </div>
+    `;
+  
+    document.getElementById(
+      "main-content"
+    ).innerHTML = html;
   }
 
  function saveSettings() {
