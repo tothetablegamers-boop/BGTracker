@@ -501,6 +501,34 @@
     ? match.map_url
     : "";
   }
+
+  function openMap(gameId) {
+
+  const game =
+    games.find(
+      g => g.id === gameId
+    );
+
+  if (!game) return;
+
+  const url =
+    getMapUrl(game);
+
+  if (!url) {
+
+    showToast(
+      "No map configured"
+    );
+
+    return;
+  }
+
+  window.open(
+    url,
+    "_blank"
+  );
+}
+
     
   function escHtml(str) {
     return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
