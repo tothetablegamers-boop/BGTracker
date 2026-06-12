@@ -504,6 +504,134 @@
   });
 
 }
+
+    async function uploadConventionMap(input) {
+    
+      const file =
+        input.files[0];
+    
+      if (!file) return;
+    
+      showToast(
+        "Uploading..."
+      );
+    
+      const formData =
+        new FormData();
+    
+      formData.append(
+        "file",
+        file
+      );
+    
+      formData.append(
+        "upload_preset",
+        "bg-convention-tracker"
+      );
+    
+      const endpoint =
+        file.type ===
+        "application/pdf"
+          ?
+        "raw/upload"
+          :
+        "image/upload";
+    
+      try {
+    
+        const response =
+          await fetch(
+    
+    `https://api.cloudinary.com/v1_1/dbw0c9dyb/${endpoint}`,
+    
+          {
+            method:"POST",
+            body:formData
+          }
+        );
+    
+        const result =
+          await response.json();
+    
+        uploadedMapUrl =
+          result.secure_url;
+    
+        uploadedMapType =
+          file.type ===
+          "application/pdf"
+            ? "pdf"
+            : "image";
+    
+        showToast(
+          "Map uploaded"
+        );
+    
+      } catch(err) {
+    
+        console.error(err);
+    
+        showToast(
+          "Upload failed"
+        );
+      }
+    }
+
+    function saveConventionMap() {
+    
+      const payload = {
+    
+        action:
+          "updateConventionMap",
+    
+        convention:
+          document
+          .getElementById(
+            "m-convention"
+          ).value,
+    
+        hall:
+          document
+          .getElementById(
+            "m-hall"
+          ).value,
+    
+        map_url:
+          uploadedMapUrl,
+    
+        map_type:
+          uploadedMapType
+      };
+    
+      fetch(
+        APPS_SCRIPT_URL,
+        {
+          method:"POST",
+          headers:{
+            "Content-Type":
+              "text/plain"
+          },
+          body:
+            JSON.stringify(
+              payload
+            )
+        }
+      )
+      .then(r=>r.json())
+      .then(()=>{
+    
+        loadConventionMaps();
+    
+        closeModal(
+          "map-modal"
+        );
+    
+        showToast(
+          "Map saved"
+        );
+      });
+    }
+  
+  
   // ── Init ──
   window.addEventListener('load', () => {
 
