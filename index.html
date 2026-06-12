@@ -545,7 +545,7 @@
           publisher: g.publisher,
           price: g.original_price,
           currency: g.original_currency,
-          priority: g.priority || 3,
+          priority: Number(g.priority) || 3,
           url: g.convention_url,
           imageUrl: g.image_url,
           status: g.status,
