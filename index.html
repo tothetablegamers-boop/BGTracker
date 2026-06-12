@@ -621,7 +621,7 @@
       ? `<div class="game-card-image"><img src="${escHtml(g.imageUrl)}" alt="" loading="lazy" /></div>`
       : `<div class="game-card-image">🎲</div>`;
     const symbol =currencySymbols[(g.currency || "").toUpperCase()  ] || g.currency || "";
-    const price = g.price ? `<span class="game-price">${symbol}${escHtml(String(g.price))}</span>` : ''; : '';
+    const price = g.price  ? `<span class="game-price">${symbol}${escHtml(String(g.price))}</span>`  : '';
     return `<div class="game-card" onclick="openGameModal('${escHtml(g.id)}')">
       ${img}
       <div class="game-card-body">
