@@ -1247,14 +1247,16 @@ let html = `
                 ${escHtml(g.originalTitle || "Untitled")}
               </div>
 
-              <div style="
-                font-size:0.75rem;
-                color:var(--muted);
-              ">
-                ${escHtml(g.hall || "")}
-                ·
+             <div style="
+              font-size:0.75rem;
+              color:var(--muted);
+            ">
+              ${escHtml(g.hall || "")}
+              ·
               ${escHtml(statusLabel(g.status))}
-              </div>
+              ·
+              ${escHtml(priorityLabel(g.priority))}
+            </div>
             </div>
           </div>
         `;
