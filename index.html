@@ -484,6 +484,24 @@
 
   
   // ── Helpers ──
+  function getMapUrl(game) {
+
+  const match =
+    conventionMaps.find(m =>
+
+      m.convention ===
+        game.convention &&
+
+      m.hall ===
+        game.hall
+
+    );
+
+  return match
+    ? match.map_url
+    : "";
+  }
+    
   function escHtml(str) {
     return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
