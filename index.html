@@ -468,6 +468,18 @@
     return map[s] || s || 'Unknown';
   }
 
+  function priorityLabel(p) {
+
+  const map = {
+    1: "🔥 Must Buy",
+    2: "⭐ High",
+    3: "📌 Normal",
+    4: "⏳ Low"
+  };
+
+  return map[Number(p)] || "📌 Normal";
+}
+
   function showToast(msg) {
     const t = document.getElementById('toast');
     t.textContent = msg;
