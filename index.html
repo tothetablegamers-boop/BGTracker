@@ -1373,11 +1373,9 @@ let html = `
   // ── Modal Helpers ──
  function closeModal(id) {
 
-  document.getElementById(id)
-    .classList.remove('open');
-  if (id === 'add-modal') {
-    editingId = null;
-  }
+  document
+    .getElementById(id)
+    .classList.remove("open");
 }
   function closeModalOnOverlay(event, id) {
     if (event.target === document.getElementById(id)) closeModal(id);
