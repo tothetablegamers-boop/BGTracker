@@ -307,6 +307,8 @@
 
   let games = [];
 
+  let conventionMaps = [];
+
   let pendingSyncQueue =
   JSON.parse(
     localStorage.getItem(
@@ -425,10 +427,33 @@
     showToast("Upload failed");
   }
 }
+  function loadConventionMaps() {
 
+  fetch(
+    APPS_SCRIPT_URL +
+    "?action=getConventionMaps"
+  )
+  .then(r => r.json())
+  .then(data => {
+
+    conventionMaps =
+      data.maps || [];
+
+  })
+  .catch(err => {
+
+    console.error(
+      "Map load failed",
+      err
+    );
+
+  });
+
+}
   // ── Init ──
   window.addEventListener('load', () => {
 
+  loadConventionMaps();
   loadGames();
   syncPendingQueue();
 
