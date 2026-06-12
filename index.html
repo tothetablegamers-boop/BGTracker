@@ -1266,10 +1266,14 @@ function syncToServer(data, action) {
   }
 
   // ── Modal Helpers ──
-  function closeModal(id) {
-    document.getElementById(id).classList.remove('open');
-  }
+ function closeModal(id) {
 
+  document.getElementById(id)
+    .classList.remove('open');
+  if (id === 'add-modal') {
+    editingId = null;
+  }
+}
   function closeModalOnOverlay(event, id) {
     if (event.target === document.getElementById(id)) closeModal(id);
   }
