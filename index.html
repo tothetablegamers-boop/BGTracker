@@ -1012,7 +1012,7 @@ function syncToServer(data, action) {
   // ── Route Tab ──
   function renderRouteTab() {
   
-  const routeGames = games.filter(
+  let routeGames = games.filter(
     g =>
       g.status !== "collected" &&
       g.status !== "not-available"
