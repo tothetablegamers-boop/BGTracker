@@ -680,6 +680,9 @@
   function openAddModal() {
     editingId = null;
     document.getElementById('add-modal-title').textContent = 'Add New Game';
+    selectedStatus = "interested";
+    uploadedImageUrl = "";
+    editingId = null;
     clearForm();
     document.getElementById('add-modal').classList.add('open');
   }
