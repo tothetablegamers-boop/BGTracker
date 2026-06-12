@@ -560,7 +560,20 @@
         showToast(
           "Map uploaded"
         );
+      document .getElementById( "map-preview" ).innerHTML =
+      uploadedMapType === "pdf"
     
+      ? `
+        <p>
+          PDF uploaded
+        </p>
+        `
+    
+      : `
+        <img
+          src="${uploadedMapUrl}"
+          class="image-preview">
+        `;
       } catch(err) {
     
         console.error(err);
