@@ -728,7 +728,16 @@
     document.getElementById('f-currency').value = g.currency || '';
     document.getElementById('f-url').value = g.url || '';
     document.getElementById('f-notes').value = g.notes || '';
-    document.getElementById("f-priority").value =g.priority || "3";
+    
+    // diagnostic message
+    console.log(
+    "Priority loaded:",
+    g.priority,
+    typeof g.priority
+    );
+    const priority = Number(g.priority) || 3;
+    document.getElementById("f-priority").value =
+    String(priority);
     
     uploadedImageUrl = g.imageUrl || '';
     previewImageUrl(g.imageUrl || '');
