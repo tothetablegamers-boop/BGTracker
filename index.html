@@ -153,16 +153,38 @@
         <label for="f-price">Price</label>
       <input type="number" id="f-price" placeholder="0.00" />
       </div>
-      <div class="form-group">
+      <div class="form-group">          
+  <label for="f-currency">
+    Currency
+  </label>
 
-      <div
-      class="modal-overlay"
-      id="map-modal">
-    
-    <div class="modal">
+  <select id="f-currency">
+
+  <option value="">Select Currency</option>
+  
+  <option value="JPY">JPY - Japanese Yen</option>
+  <option value="USD">USD - US Dollar</option>
+  <option value="EUR">EUR - Euro</option>
+  <option value="GBP">GBP - British Pound</option>
+  <option value="SGD">SGD - Singapore Dollar</option>
+  <option value="HKD">HKD - Hong Kong Dollar</option>
+  <option value="KRW">KRW - Korean Won</option>
+  <option value="TWD">TWD - Taiwan Dollar</option>
+  <option value="CNY">CNY - Chinese Yuan</option>
+  
+  </select>
+
+  </div>   
+    </div>
+
+  <div class="modal">
     
     <div class="modal-handle"></div>
-    
+
+    <div
+          class="modal-overlay"
+          id="map-modal">
+        
     <h2>Convention Map</h2>
     
     <div class="form-group">
@@ -205,33 +227,6 @@
     
     </div>
     </div>
-          
-  <label for="f-currency">
-    Currency
-  </label>
-
-  <select id="f-currency">
-
-  <option value="">Select Currency</option>
-  
-  <option value="JPY">JPY - Japanese Yen</option>
-  <option value="USD">USD - US Dollar</option>
-  <option value="EUR">EUR - Euro</option>
-  <option value="GBP">GBP - British Pound</option>
-  <option value="SGD">SGD - Singapore Dollar</option>
-  <option value="HKD">HKD - Hong Kong Dollar</option>
-  <option value="KRW">KRW - Korean Won</option>
-  <option value="TWD">TWD - Taiwan Dollar</option>
-  <option value="CNY">CNY - Chinese Yuan</option>
-  
-  </select>
-
-
-        
-
-  </div>   
-    </div>
-
     
     <div class="form-group">
       <label for="f-url">Convention Page URL</label>
