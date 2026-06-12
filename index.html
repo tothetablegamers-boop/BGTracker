@@ -623,7 +623,7 @@
     const currency = (g.currency || "").toUpperCase();
 
     const symbol =   currencySymbols[currency] || currency;
-    const price = g.price   ? `<span class="game-price">${symbol}${g.price}</span>`  : ''; : '';
+    const price = g.price   ? `<span class="game-price">${symbol}${g.price}</span>`  : '';
     return `<div class="game-card" onclick="openGameModal('${escHtml(g.id)}')">
       ${img}
       <div class="game-card-body">
