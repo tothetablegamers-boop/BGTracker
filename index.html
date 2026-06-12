@@ -1326,9 +1326,15 @@ let html = `
             class="route-item"
             onclick="openGameModal('${escHtml(g.id)}')"
           >
-            <div class="route-booth">
-              ${escHtml(g.booth || "?")}
-            </div>
+         <div
+          class="route-booth"
+          onclick="
+            event.stopPropagation();
+            openMap('${escHtml(g.id)}');
+          "
+        >
+          ${escHtml(g.booth || "?")}
+        </div>
 
             <div>
               <div style="
