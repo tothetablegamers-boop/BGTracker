@@ -344,9 +344,17 @@
 
 
   let activeConvention =
-  localStorage.getItem(
-    "activeConvention"
-  ) || "all";
+  localStorage.getItem("activeConvention");
+
+  if (!activeConvention) {
+
+  const conventions = getConventions();
+
+  activeConvention =
+    conventions.length > 0
+      ? conventions[0]
+      : "all";
+  }
 
   async function uploadImage(input) {
 
@@ -1008,6 +1016,20 @@ function syncToServer(data, action) {
     );
   
   }
+
+  function getActiveConventions() {
+
+  return [...new Set(
+    games
+      .filter(g =>
+        g.status !== "collected" &&
+        g.status !== "not-available"
+      )
+      .map(g => g.convention)
+      .filter(Boolean)
+  )];
+
+  }
   
   // ── Route Tab ──
   function renderRouteTab() {
@@ -1019,7 +1041,7 @@ function syncToServer(data, action) {
   );
 
   const conventions =
-  getConventions();
+  getActiveConventions();
 
 let html = `
 <div class="convention-selector">
@@ -1075,14 +1097,17 @@ let html = `
 });
 
   if (routeGames.length === 0) {
-    document.getElementById("main-content").innerHTML =
-      `<div class="empty-state">
-        <div class="icon">🗺️</div>
-        <p>No active games to route</p>
-      </div>`;
-    return;
-  }
 
+  html += `
+    <div class="empty-state">
+      <div class="icon">🗺️</div>
+      <p>No active games to route</p>
+    </div>
+  `;
+
+  document.getElementById("main-content").innerHTML = html;
+  return;
+  }
   const paidCount =
     routeGames.filter(g => g.status === "paid").length;
 
