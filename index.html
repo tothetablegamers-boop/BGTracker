@@ -1202,7 +1202,7 @@ function syncToServer(data, action) {
  fetch(APPS_SCRIPT_URL, {
     method: "POST",
     headers:{
-    "Content-Type":"application/json"
+    "Content-Type":"text/plain"
   },
     body: JSON.stringify(payload)
   })
