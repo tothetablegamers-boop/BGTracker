@@ -1626,16 +1626,15 @@ let html = `
           ${map.hall ? " - " + escHtml(map.hall) : ""}
         </div>
 
-        <button
-          class="btn btn-secondary"
-          style="width:auto"
-          onclick="editMap(
-          ${JSON.stringify(map.convention)},
-          ${JSON.stringify(map.hall)}
-)"
-          >
-            Edit
-          </button>
+       <button
+        class="btn btn-secondary"
+        style="width:auto"
+        data-convention="${escHtml(map.convention)}"
+        data-hall="${escHtml(map.hall || '')}"
+        onclick="editMap(this.dataset.convention,this.dataset.hall)"
+      >
+        Edit
+      </button>
         </div>
       `;
     });
