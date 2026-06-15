@@ -1698,6 +1698,39 @@ function editMap(convention, hall) {
     .classList.add("open");
 }
 
+  function populateMapDropdowns() {
+
+  const conventionSelect =
+    document.getElementById("m-convention");
+
+  const hallSelect =
+    document.getElementById("m-hall");
+
+  const conventions =
+    [...new Set(
+      games
+        .map(g => g.convention)
+        .filter(Boolean)
+    )];
+
+  conventionSelect.innerHTML =
+    conventions.map(c =>
+      `<option value="${c}">${c}</option>`
+    ).join("");
+
+  const halls =
+    [...new Set(
+      games
+        .map(g => g.hall)
+        .filter(Boolean)
+    )];
+
+  hallSelect.innerHTML =
+    halls.map(h =>
+      `<option value="${h}">${h}</option>`
+    ).join("");
+}
+
   // ── Settings Tab ──
   function renderSettingsTab() {
 
