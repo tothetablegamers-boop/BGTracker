@@ -297,59 +297,62 @@
 
 <div class="toast" id="toast"></div>
 
-
-
-
+<!-- Convention Map Modal -->
+<div
+  class="modal-overlay"
+  id="map-modal"
+  onclick="closeModalOnOverlay(event,'map-modal')"
+>
   <div class="modal">
-    
+
     <div class="modal-handle"></div>
 
-    <div
-          class="modal-overlay"
-          id="map-modal">
-        
     <h2>Convention Map</h2>
-    
+
     <div class="form-group">
-    <label>Convention</label>
-    <input id="m-convention">
+      <label>Convention</label>
+      <input id="m-convention">
     </div>
-    
+
     <div class="form-group">
-    <label>Hall</label>
-    <input id="m-hall">
+      <label>Hall</label>
+      <input id="m-hall">
     </div>
-    
+
     <button
-    class="btn btn-secondary"
-    onclick="
-    document
-    .getElementById(
-    'm-map-file'
-    ).click()
-    ">
-    Choose Map
+      class="btn btn-secondary"
+      onclick="document.getElementById('m-map-file').click()">
+      Choose Map
     </button>
-    
+
     <input
-    type="file"
-    id="m-map-file"
-    accept="image/*,.pdf"
-    style="display:none"
-    onchange="
-    uploadConventionMap(this)
-    ">
-    
+      type="file"
+      id="m-map-file"
+      accept="image/*,.pdf"
+      style="display:none"
+      onchange="uploadConventionMap(this)"
+    >
+
     <div id="map-preview"></div>
-    
-    <button
-    class="btn btn-primary"
-    onclick="saveConventionMap()">
-    Save Map
-    </button>
-    
+
+    <div class="btn-row">
+      <button
+        class="btn btn-secondary"
+        onclick="closeModal('map-modal')">
+        Cancel
+      </button>
+
+      <button
+        class="btn btn-primary"
+        onclick="saveConventionMap()">
+        Save Map
+      </button>
     </div>
-    </div>
+
+  </div>
+</div>
+
+
 <script>
   let APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx-DW5xABYmJerfmuEb3cLe3B1wgbOR-YpZzRh81fgF5GxGS0UIFIeTzdsH7c4HHx0hiw/exec';
 
