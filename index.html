@@ -1667,6 +1667,11 @@ let html = `
 
   function showAddMapModal() {
 
+  if (games.length === 0) {
+    showToast("Games still loading");
+    return;
+  }
+
   uploadedMapUrl = "";
   uploadedMapType = "";
 
@@ -1674,7 +1679,8 @@ let html = `
 
   populateMapDropdowns();
 
-  document.getElementById("map-modal")
+  document
+    .getElementById("map-modal")
     .classList.add("open");
 }
 
