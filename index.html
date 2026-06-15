@@ -1662,10 +1662,51 @@ let html = `
 
   document.getElementById("map-preview").innerHTML = "";
 
-  populateMapDropdowns();
+ function populateMapDropdowns() {
 
-  document.getElementById("map-modal")
-    .classList.add("open");
+  const conventionSelect =
+    document.getElementById("m-convention");
+
+  const hallSelect =
+    document.getElementById("m-hall");
+
+  const conventions =
+    [...new Set(
+      games
+        .map(g => g.convention)
+        .filter(Boolean)
+    )];
+
+  conventionSelect.innerHTML =
+    conventions.map(c =>
+      `<option value="${c}">${c}</option>`
+    ).join("");
+
+  function refreshHalls() {
+
+    const convention =
+      conventionSelect.value;
+
+    const halls =
+      [...new Set(
+        games
+          .filter(g =>
+            g.convention === convention
+          )
+          .map(g => g.hall)
+          .filter(Boolean)
+      )];
+
+    hallSelect.innerHTML =
+      halls.map(h =>
+        `<option value="${h}">${h}</option>`
+      ).join("");
+  }
+
+    conventionSelect.onchange =
+      refreshHalls;
+  
+    refreshHalls();
 }
 
 function editMap(convention, hall) {
