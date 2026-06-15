@@ -626,19 +626,24 @@
             )
         }
       )
-      .then(r=>r.json())
-      .then(()=>{
-    
+     .then(r => r.json())
+      .then(result => {
+      
+        if (!result.success) {
+          showToast("Save failed");
+          console.error(result);
+          return;
+        }
+      
         loadConventionMaps();
-    
-        closeModal(
-          "map-modal"
-        );
-    
-        showToast(
-          "Map saved"
-        );
-      });
+        closeModal("map-modal");
+        showToast("Map saved");
+      
+      })
+      .catch(err => {
+        console.error(err);
+        showToast("Save failed");
+});
     }
   
   
