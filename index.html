@@ -1651,6 +1651,53 @@ let html = `
   document.getElementById("main-content").innerHTML = html;
 }
 
+
+  function showAddMapModal() {
+
+  uploadedMapUrl = "";
+  uploadedMapType = "";
+
+  document.getElementById("map-preview").innerHTML = "";
+
+  populateMapDropdowns();
+
+  document.getElementById("map-modal")
+    .classList.add("open");
+}
+
+function editMap(convention, hall) {
+
+  const map = conventionMaps.find(
+    m =>
+      m.convention === convention &&
+      m.hall === hall
+  );
+
+  if (!map) return;
+
+  populateMapDropdowns();
+
+  document.getElementById("m-convention").value =
+    convention;
+
+  document.getElementById("m-hall").value =
+    hall;
+
+  uploadedMapUrl =
+    map.map_url || "";
+
+  uploadedMapType =
+    map.map_type || "image";
+
+  document.getElementById("map-preview").innerHTML =
+    uploadedMapType === "pdf"
+      ? "<p>PDF uploaded</p>"
+      : `<img src="${uploadedMapUrl}" class="image-preview">`;
+
+  document.getElementById("map-modal")
+    .classList.add("open");
+}
+
   // ── Settings Tab ──
   function renderSettingsTab() {
 
