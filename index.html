@@ -1601,8 +1601,54 @@ let html = `
 
     function openMapManager() {
 
-      document.getElementById(   "map-modal" )
-    .classList.add("open");
+  let html = `
+    <div style="padding:20px">
+
+      <h2 style="margin-bottom:16px;color:var(--accent)">
+        🗺️ Convention Maps
+      </h2>
+  `;
+
+  conventionMaps.forEach(map => {
+
+    html += `
+      <div style="
+        background:var(--card);
+        padding:12px;
+        border-radius:12px;
+        margin-bottom:10px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+      ">
+        <div>
+          ${escHtml(map.convention)}
+          ${map.hall ? " - " + escHtml(map.hall) : ""}
+        </div>
+
+        <button
+          class="btn btn-secondary"
+          style="width:auto"
+          onclick="editMap('${map.convention}','${map.hall}')"
+          >
+            Edit
+          </button>
+        </div>
+      `;
+    });
+  
+    html += `
+        <button
+          class="btn btn-primary"
+          onclick="showAddMapModal()"
+        >
+          + Add New Map
+        </button>
+  
+      </div>
+    `;
+
+  document.getElementById("main-content").innerHTML = html;
 }
 
   // ── Settings Tab ──
