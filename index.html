@@ -691,15 +691,17 @@
   // ── Helpers ──
   function getMapUrl(game) {
 
-  const match =
-    conventionMaps.find(m =>
-
-      m.convention ===
-        game.convention &&
-
-      m.hall ===
-        game.hall
-
+    const match = conventionMaps.find(m =>
+  
+    String(m.convention).trim() ===
+    String(game.convention).trim()
+  
+    &&
+  
+    String(m.hall).trim().toLowerCase() ===
+    String(game.hall).trim().toLowerCase()
+  
+  );
     );
 
   return match
