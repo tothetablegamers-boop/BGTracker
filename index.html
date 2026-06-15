@@ -1698,10 +1698,7 @@ let html = `
     ).innerHTML = html;
   }
 
-  showAddMapModal()
-  editMap()
-
- function saveSettings() {
+  function saveSettings() {
   const url = document.getElementById('s-url').value.trim();
   if (url) {
     localStorage.setItem('bg_script_url', url);
