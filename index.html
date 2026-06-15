@@ -1610,63 +1610,28 @@ let html = `
     document.getElementById('main-content').innerHTML = html;
   }
 
-   function openMapManager() {
+  function openMapManager() {
 
-  document.getElementById("main-content").innerHTML = `
+  let html = `
     <div style="padding:20px">
-
       <h2>🗺️ Convention Maps</h2>
+  `;
 
+  conventionMaps.forEach(map => {
+
+    html += `
+      ...
+    `;
+  });
+
+  html += `
       <button
         class="btn btn-primary"
         onclick="showAddMapModal()">
         + Add New Map
       </button>
-
     </div>
   `;
-}
-
-  conventionMaps.forEach(map => {
-
-    html += `
-      <div style="
-        background:var(--card);
-        padding:12px;
-        border-radius:12px;
-        margin-bottom:10px;
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-      ">
-        <div>
-          ${escHtml(map.convention)}
-          ${map.hall ? " - " + escHtml(map.hall) : ""}
-        </div>
-
-       <button
-        class="btn btn-secondary"
-        style="width:auto"
-        data-convention="${escHtml(map.convention)}"
-        data-hall="${escHtml(map.hall || '')}"
-        onclick="editMap(this.dataset.convention,this.dataset.hall)"
-      >
-        Edit
-      </button>
-        </div>
-      `;
-    });
-  
-    html += `
-        <button
-          class="btn btn-primary"
-          onclick="showAddMapModal()"
-        >
-          + Add New Map
-        </button>
-  
-      </div>
-    `;
 
   document.getElementById("main-content").innerHTML = html;
 }
@@ -1773,11 +1738,6 @@ function populateMapDropdowns() {
 
   refreshHalls();
 }
-
-  console.log(
-  "Conventions:",
-  conventions
-);
 
   // ── Settings Tab ──
   function renderSettingsTab() {
