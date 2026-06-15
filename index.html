@@ -1610,15 +1610,22 @@ let html = `
     document.getElementById('main-content').innerHTML = html;
   }
 
-    function openMapManager() {
+   function openMapManager() {
 
-  let html = `
+  document.getElementById("main-content").innerHTML = `
     <div style="padding:20px">
 
-      <h2 style="margin-bottom:16px;color:var(--accent)">
-        🗺️ Convention Maps
-      </h2>
+      <h2>🗺️ Convention Maps</h2>
+
+      <button
+        class="btn btn-primary"
+        onclick="showAddMapModal()">
+        + Add New Map
+      </button>
+
+    </div>
   `;
+}
 
   conventionMaps.forEach(map => {
 
