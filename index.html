@@ -505,14 +505,15 @@
 
 }
 
-    async function uploadConventionMap(input) {
+     async function uploadConventionMap(input) {
 
+      const file = input.files[0];
+    
+      if (!file) return;
+    
       console.log(file);
       console.log(file.type);
-      console.log(result);
-      const file =
-        input.files[0];
-    
+        
       if (!file) return;
     
       showToast(
