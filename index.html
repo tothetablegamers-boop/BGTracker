@@ -860,6 +860,17 @@
       </div>`;
     }
 
+      html += `
+      <div style="padding:0 16px 12px">
+        <button
+          class="btn btn-secondary"
+          onclick="showAddMapModal()"
+        >
+          🗺️ + Map
+        </button>
+      </div>
+      `;
+    
     html += `<div class="filters">
       <div class="filter-chip ${currentFilter==='all'?'active':''}" onclick="setFilter('all')">All</div>
       <div class="filter-chip ${currentFilter==='interested'?'active':''}" onclick="setFilter('interested')">⭐ Interested</div>
